@@ -1,0 +1,18 @@
+.button {
+  font: inherit;
+  padding: 0.5rem 1rem;
+  border: 1px solid #fff;
+  color: inherit;
+  background: var(--bg-primary);
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.button--secondary {
+  background: var(--bg-secondary);
+  border: 0px;
+}
+
+.button--outline {
+  background: transparent;
+}
