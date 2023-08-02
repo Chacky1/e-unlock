@@ -6,11 +6,19 @@
   background: var(--bg-primary);
   cursor: pointer;
   border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 700;
 }
 
 .button--secondary {
   background: var(--bg-secondary);
   border: 0px;
+}
+
+.button--tertiary {
+  background: #fff;
+  border: 0px;
+  color: #000;
 }
 
 .button--outline {
