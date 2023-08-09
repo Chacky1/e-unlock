@@ -1,5 +1,6 @@
 import Image from "next/image";
 import styles from "./category.module.css";
+import { slugify } from "@/lib/utils";
 
 type CategoryProps = {
   name: string;
@@ -9,10 +10,12 @@ type CategoryProps = {
 };
 
 const Category = ({ name, description, image, color }: CategoryProps) => {
+  const slugifiedName = slugify(name);
+  
   return (
     <a
       className={styles.category}
-      href={`#category_${name}`}
+      href={`#category_${slugifiedName}`}
       style={{ backgroundColor: color }}
     >
       <div className={styles.category__image}>
