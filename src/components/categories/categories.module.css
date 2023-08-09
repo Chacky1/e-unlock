@@ -1,0 +1,34 @@
+.categories {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 30vh;
+}
+
+.categories__title {
+    background-color: var(--bg-category);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 5%;
+    height: 100%;
+}
+
+.categories__title h2 {
+    transform: rotate(-90deg);
+    transform-origin: center;
+}
+
+.categories__categories {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    row-gap: 2rem;
+    width: 90%;
+}
+
+.categories__categories li {
+    list-style: none;
+    width: 45%;
+}
