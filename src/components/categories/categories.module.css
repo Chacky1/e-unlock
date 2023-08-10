@@ -3,6 +3,7 @@
     align-items: center;
     justify-content: space-between;
     min-height: 30vh;
+    padding: 4rem;
 }
 
 .categories__title {

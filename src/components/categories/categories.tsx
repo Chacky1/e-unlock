@@ -1,15 +1,11 @@
-import getCategories from "@/actions/get-categories";
 import Category from "./category";
 import styles from "./categories.module.css";
 
-const Categories = async () => {
-  let categories = [];
+type CategoriesProps = {
+  categories: any;
+};
 
-  try {
-    categories = await getCategories();
-  } catch (error) {
-    return <p>Unable to load categories</p>;
-  }
+const Categories = async ({ categories }: CategoriesProps) => {
 
   return (
     <section id="categories" className={styles.categories}>
