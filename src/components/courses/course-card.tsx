@@ -2,23 +2,20 @@ import Image from 'next/image';
 import Button from '@/components/ui/button';
 import styles from './course-card.module.css';
 
-type CourseCardProps = {
-    name: string;
-    description: string;
-    issue: string;
-    image: string;
+type SaleCourseCardProps = {
+    course: any;
 };
 
-const CourseCard = ({ name, description, issue, image }: CourseCardProps) => {
+const CourseCard = ({ course }: SaleCourseCardProps) => {
   return (
     <div className={styles.course}>
       <div className={styles.course__image}>
-        <Image src={image} alt={name} width={300} height={300} />
+        <Image src={course.image} alt={course.name} width={300} height={300} />
       </div>
       <div className={styles.course__content}>
-        <h3>{issue}</h3>
-        <p>{description}</p>
-        <Button>{name}</Button>
+        <h3>{course.issue}</h3>
+        <p>{course.description}</p>
+        <Button>{course.name}</Button>
       </div>
     </div>
   );
