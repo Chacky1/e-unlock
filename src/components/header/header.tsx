@@ -1,11 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 import { UserButton, useAuth } from "@clerk/nextjs";
 
 import Button from "@/components/ui/button";
 import styles from "./header.module.css";
+import Link from "next/link";
 
 export default function Header() {
   const { userId } = useAuth();
@@ -31,9 +32,27 @@ export default function Header() {
         <h1 className={styles.title}>e-unlock</h1>
       </section>
 
-      <section id="authentication" className={styles.auth}>
+      <section id="navigation" className={styles.auth}>
         {userId ? (
-          <UserButton afterSignOutUrl="/" />
+          <>
+            <nav className={styles.navigation}>
+              <ul>
+                <li className={styles.navigation__link}>
+                  <Link href="/">
+                    Accueil
+                  </Link>
+                </li>
+                <li className={styles.navigation__link}>
+                  <Link
+                    href={`/profile/${userId}`}
+                  >
+                    Mes cours
+                  </Link>
+                </li>
+              </ul>
+            </nav>
+            <UserButton afterSignOutUrl="/" />
+          </>
         ) : (
           <>
             <Button variant="secondary" onClick={onSignUpClick}>
