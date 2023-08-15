@@ -1,3 +1,8 @@
+import { z } from "zod";
+import UserSchema from "./schema/user.schema";
+import CourseSchema from "./schema/course.schema";
+import CategorySchema from "./schema/category.schema";
+
 const {
   AUTH0_DOMAIN,
   AUTH0_AUDIENCE,
@@ -7,6 +12,10 @@ const {
 } = process.env;
 
 const ACCESS_TOKEN_TIME_TO_LIVE_MARGIN = 300; // 5 minutes
+
+type Category = z.infer<typeof CategorySchema>;
+type Course = z.infer<typeof CourseSchema>;
+type User = z.infer<typeof UserSchema>;
 
 class ClientApiLearning {
   public accessToken: string = "";
@@ -55,7 +64,7 @@ class ClientApiLearning {
     this.accessTokenExpiry = Date.now() / 1000 + expires_in;
   };
 
-  public fetchCategories = async () => {
+  public fetchCategories = async (): Promise<Category[]> => {
     await this.ensureAccessToken();
     const categoriesUrl = new URL("/categories", AUTH0_AUDIENCE);
 
@@ -63,12 +72,24 @@ class ClientApiLearning {
       headers: { authorization: `Bearer ${this.accessToken}` },
     });
 
-    const categories = await response.json();
+    const categories = await response.json() as Category[];
+
+    try {
+      for (const category of categories) {
+        CategorySchema.parse(category);
+      }
+    } catch (error) {
+      console.error(
+        "[fetchCategories] Category received does not respect schema, error : ",
+        error
+      );
+      return [];
+    }
 
     return categories;
   };
 
-  public fetchCoursesByCategory = async (categoryId: number) => {
+  public fetchCoursesByCategory = async (categoryId: number): Promise<Course[]> => {
     await this.ensureAccessToken();
     const coursesUrl = new URL(
       `/categories/${categoryId}/courses`,
@@ -79,12 +100,24 @@ class ClientApiLearning {
       headers: { authorization: `Bearer ${this.accessToken}` },
     });
 
-    const courses = await response.json();
+    const courses = await response.json() as Course[];
+
+    try {
+      for (const course of courses) {
+        CourseSchema.parse(course);
+      }
+    } catch (error) {
+      console.error(
+        "[fetchCoursesByCategory] Course received does not respect schema, error : ",
+        error
+      );
+      return [];
+    }
 
     return courses;
   };
 
-  public fetchUser = async (userCode: string) => {
+  public fetchUser = async (userCode: string): Promise<User | null> => {
     await this.ensureAccessToken();
     const userCoursesUrl = new URL(`/users/${userCode}`, AUTH0_AUDIENCE);
 
@@ -92,7 +125,17 @@ class ClientApiLearning {
       headers: { authorization: `Bearer ${this.accessToken}` },
     });
 
-    const user = await response.json();
+    const user = await response.json() as User;
+
+    try {
+      UserSchema.parse(user);
+    } catch (error) {
+      console.error(
+        "[fetchUser] User received does not respect schema, error : ",
+        error
+      );
+      return null;
+    }
 
     return user;
   };
