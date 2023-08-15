@@ -1,4 +1,4 @@
-import { clientApiLearning } from "@/lib/client-api-learning";
+import { clientApiLearning } from "@/lib/api/learning/client";
 
 const fetchUser = (userCode: string) => {
     const user = clientApiLearning.fetchUser(userCode);
