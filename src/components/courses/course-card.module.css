@@ -1,0 +1,32 @@
+.course {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    row-gap: 1rem;
+    border: 3px var(--text-primary) solid;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.course__image img {
+    width: 100%;
+    border-radius: 5px 5px 0 0;
+}
+
+.course__content {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    padding: 1rem;
+}
+
+.course__inactive {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--bg-secondary);
+    z-index: 10;
+    opacity: 0.5;
+}
