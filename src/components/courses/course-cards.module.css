@@ -5,9 +5,15 @@
 .courses__list {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-wrap: wrap;
     column-gap: 1rem;
+    list-style-type: none;
+    padding-top: 2rem;
+}
+
+.courses__list li {
+    width: 30%;
 }
 
 .courses__construction {
