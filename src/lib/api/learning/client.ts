@@ -1,7 +1,6 @@
-import { z } from "zod";
-import UserSchema from "./schema/user.schema";
-import CourseSchema from "./schema/course.schema";
-import CategorySchema from "./schema/category.schema";
+import { UserSchema, User } from "./schema/user.schema";
+import { CourseSchema, Course } from "./schema/course.schema";
+import { CategorySchema, Category } from "./schema/category.schema";
 
 const {
   AUTH0_DOMAIN,
@@ -12,10 +11,6 @@ const {
 } = process.env;
 
 const ACCESS_TOKEN_TIME_TO_LIVE_MARGIN = 300; // 5 minutes
-
-type Category = z.infer<typeof CategorySchema>;
-type Course = z.infer<typeof CourseSchema>;
-type User = z.infer<typeof UserSchema>;
 
 class ClientApiLearning {
   public accessToken: string = "";
