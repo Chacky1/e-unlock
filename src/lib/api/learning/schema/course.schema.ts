@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-const CourseSchema = z.object({
+export const CourseSchema = z.object({
     id: z.number(),
     name: z.string().min(1).max(255),
     description: z.string(),
@@ -12,4 +12,4 @@ const CourseSchema = z.object({
     updatedAt: z.string().datetime(),
 });
 
-export default CourseSchema;
+export type Course = z.infer<typeof CourseSchema>;
