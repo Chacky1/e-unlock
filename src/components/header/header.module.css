@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 2rem 10%;
+    padding: 2rem 0;
 }
 
 .logo {
@@ -37,4 +37,14 @@
     font-size: 1.2rem;
     font-weight: 500;
     color: inherit;
+}
+
+@media screen and (max-width: 600px) {
+    .title {
+        display: none;
+    }
+
+    .navigation__link a {
+        font-size: 1rem
+    }
 }
