@@ -14,6 +14,7 @@
     justify-content: center;
     width: 5%;
     height: 100%;
+    transform: translateX(-100%);
 }
 
 .categories__title h2 {
@@ -26,10 +27,36 @@
     justify-content: space-around;
     flex-wrap: wrap;
     row-gap: 2rem;
-    width: 90%;
 }
 
 .categories__categories li {
     list-style: none;
     width: 45%;
+}
+
+@media screen and (max-width: 1114px) {
+    .categories__title {
+        width: 7%;
+    }
+
+    .categories__categories li {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 910px) {
+    .categories {
+        flex-direction: column;
+        row-gap: 2rem;
+    }
+
+    .categories__title {
+        transform: none;
+        width: 100%;
+        padding: 1rem 0;
+    }
+
+    .categories__title h2 {
+        transform: none;
+    }
 }
