@@ -1,8 +1,9 @@
 import Image from "next/image";
 import style from "./product-card.module.css";
+import { Product } from "@/types/product.type";
 
 type ProductCardProps = {
-    product: any;
+    product: Product;
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {

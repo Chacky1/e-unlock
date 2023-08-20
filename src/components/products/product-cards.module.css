@@ -1,0 +1,13 @@
+.products {
+    background-color: #fff;
+    color: var(--text-secondary);
+}
+
+.products__none {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    row-gap: 2rem;
+}
