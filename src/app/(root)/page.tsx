@@ -4,9 +4,10 @@ import Introduction from "@/components/introduction/introduction";
 import Categories from "@/components/categories/categories";
 import fetchCategories from "@/actions/get-categories";
 import CategoryCourses from "@/components/categories/category-courses";
+import { Category } from "@/lib/api/learning/schema/category.schema";
 
 const Home = async () => {
-  let categories = [];
+  let categories: Category[] = [];
 
   try {
     categories = await fetchCategories();
