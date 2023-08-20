@@ -48,6 +48,7 @@
     .categories {
         flex-direction: column;
         row-gap: 2rem;
+        padding: 4rem 0;
     }
 
     .categories__title {

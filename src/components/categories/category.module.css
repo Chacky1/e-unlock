@@ -6,6 +6,7 @@
     padding: 1rem;
     background-color: var(--bg-category);
     border-radius: 10px;
+    height: 100%;
 }
 
 .category__image {
@@ -17,7 +18,6 @@
 .category__content {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     row-gap: 1rem;
     width: 70%;
 }
@@ -29,4 +29,15 @@
 
 .category__content p {
     line-height: 2;
+}
+
+@media screen and (max-width: 664px) {
+    .category__content {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .category__image {
+        display: none;
+    }
 }
