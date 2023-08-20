@@ -31,3 +31,10 @@
     justify-content: center;
     width: 100%;
 }
+
+@media screen and (max-width: 400px) {
+    .profile__title {
+        font-size: 2rem;
+        height: 30vh;
+    }
+}
