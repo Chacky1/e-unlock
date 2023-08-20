@@ -15,3 +15,8 @@
     margin: 0 0 2rem 0;
 }
 
+@media screen and (max-width: 490px) {
+    .categoryCourses__title h2 {
+        font-size: 2rem;
+    }
+}
