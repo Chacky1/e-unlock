@@ -1,4 +1,4 @@
-import fetchCoursesByCategory from "@/actions/get-courses-by-category";
+import fetchCoursesByCategory from "@/actions/fetch-courses-by-category";
 import styles from "./course-cards.module.css";
 import CourseCard from "./course-card";
 import { Course } from "@/lib/api/learning/schema/course.schema";
