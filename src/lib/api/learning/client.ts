@@ -112,6 +112,29 @@ class ClientApiLearning {
     return courses;
   };
 
+  public fetchCourseBySlug = async (courseSlug: string): Promise<Course | null> => {
+    await this.ensureAccessToken();
+    const courseUrl = new URL(`/courses?slug=${courseSlug}`, AUTH0_AUDIENCE);
+
+    const response = await fetch(courseUrl, {
+      headers: { authorization: `Bearer ${this.accessToken}` },
+    });
+
+    const course = await response.json() as Course;
+
+    try {
+      CourseSchema.parse(course);
+    } catch (error) {
+      console.error(
+        "[fetchUserBySlug] Course received does not respect schema, error : ",
+        error
+      );
+      return null;
+    }
+
+    return course;
+  }
+
   public fetchUser = async (userCode: string): Promise<User | null> => {
     await this.ensureAccessToken();
     const userCoursesUrl = new URL(`/users/${userCode}`, AUTH0_AUDIENCE);
