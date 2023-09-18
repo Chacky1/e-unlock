@@ -10,33 +10,22 @@ const {
   AUTH0_GRANT_TYPE = "client_credentials",
 } = process.env;
 
-const ACCESS_TOKEN_TIME_TO_LIVE_MARGIN = 300; // 5 minutes
+const ACCESS_TOKEN_TIME_TO_LIVE = 3600; // 1 hour
 
 class ClientApiLearning {
   public accessToken: string = "";
-  private accessTokenExpiry: number = 0;
-
-  public constructor() {
-    this.init();
-  }
-
-  private init = async () => {
-    console.info("Initializing ClientApiLearning...");
-    await this.ensureAccessToken();
-  };
+  private accessTokenExpiry: Date = new Date();
 
   private ensureAccessToken = async () => {
-    if (!this.isAccessTokenValid()) {
-      await this.fetchAccessToken();
+    console.info("Ensuring access token is valid...");
+    console.info("Access token : ", this.accessToken);
+    console.info("Access token expiry : ", this.accessTokenExpiry);
+    if (this.accessToken && new Date() < this.accessTokenExpiry) {
+      return;
     }
-  };
 
-  private isAccessTokenValid = () => {
-    return (
-      this.accessToken &&
-      Date.now() <
-        (this.accessTokenExpiry - ACCESS_TOKEN_TIME_TO_LIVE_MARGIN) * 1000
-    );
+    console.info("Access token expired, fetching a new one...");
+    await this.fetchAccessToken();
   };
 
   private fetchAccessToken = async () => {
@@ -51,12 +40,15 @@ class ClientApiLearning {
         audience: AUTH0_AUDIENCE,
         grant_type: AUTH0_GRANT_TYPE,
       }),
+      next: {
+        revalidate: ACCESS_TOKEN_TIME_TO_LIVE,
+      },
     });
 
-    const { access_token, expires_in } = await response.json();
+    const { access_token } = await response.json();
 
     this.accessToken = access_token;
-    this.accessTokenExpiry = Date.now() / 1000 + expires_in;
+    this.accessTokenExpiry = new Date(Date.now() + ACCESS_TOKEN_TIME_TO_LIVE * 1000);
   };
 
   public fetchCategories = async (): Promise<Category[]> => {
@@ -67,7 +59,7 @@ class ClientApiLearning {
       headers: { authorization: `Bearer ${this.accessToken}` },
     });
 
-    const categories = await response.json() as Category[];
+    const categories = (await response.json()) as Category[];
 
     try {
       for (const category of categories) {
@@ -84,7 +76,9 @@ class ClientApiLearning {
     return categories;
   };
 
-  public fetchCoursesByCategory = async (categoryId: number): Promise<Course[]> => {
+  public fetchCoursesByCategory = async (
+    categoryId: number
+  ): Promise<Course[]> => {
     await this.ensureAccessToken();
     const coursesUrl = new URL(
       `/categories/${categoryId}/courses`,
@@ -95,7 +89,7 @@ class ClientApiLearning {
       headers: { authorization: `Bearer ${this.accessToken}` },
     });
 
-    const courses = await response.json() as Course[];
+    const courses = (await response.json()) as Course[];
 
     try {
       for (const course of courses) {
@@ -112,7 +106,9 @@ class ClientApiLearning {
     return courses;
   };
 
-  public fetchCourseBySlug = async (courseSlug: string): Promise<Course | null> => {
+  public fetchCourseBySlug = async (
+    courseSlug: string
+  ): Promise<Course | null> => {
     await this.ensureAccessToken();
     const courseUrl = new URL(`/courses?slug=${courseSlug}`, AUTH0_AUDIENCE);
 
@@ -120,7 +116,7 @@ class ClientApiLearning {
       headers: { authorization: `Bearer ${this.accessToken}` },
     });
 
-    const course = await response.json() as Course;
+    const course = (await response.json()) as Course;
 
     try {
       CourseSchema.parse(course);
@@ -133,7 +129,7 @@ class ClientApiLearning {
     }
 
     return course;
-  }
+  };
 
   public fetchUser = async (userCode: string): Promise<User | null> => {
     await this.ensureAccessToken();
@@ -143,7 +139,7 @@ class ClientApiLearning {
       headers: { authorization: `Bearer ${this.accessToken}` },
     });
 
-    const user = await response.json() as User;
+    const user = (await response.json()) as User;
 
     try {
       UserSchema.parse(user);
@@ -159,4 +155,5 @@ class ClientApiLearning {
   };
 }
 
-export const clientApiLearning = new ClientApiLearning();
+const clientApiLearning = new ClientApiLearning();
+export default clientApiLearning;
