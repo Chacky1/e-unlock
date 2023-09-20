@@ -12,11 +12,14 @@ const CourseCards = async ({ categoryId }: CourseCardsProps) => {
 
   const defaultCourse = {
     name: "En construction",
+    slug: "en-construction",
     issue: "Je veux me former tout de suite",
     description:
       "Malheureusement, je travaille encore sur cette future formation...",
+    solution: "Je vous invite à revenir plus tard !",
     price: 0,
     image: "/default-course.webp",
+    video: "",
     categoryId: 0,
     id: 0,
     createdAt: new Date().toString(),

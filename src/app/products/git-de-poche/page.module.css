@@ -1,0 +1,26 @@
+.sale-page__intro {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 0;
+    background-color: #1c72b813;
+}
+
+.sale-page__intro video {
+    width: 40%;
+    padding: 2rem;
+}
+
+.sale-page__intro div {
+    width: 40%;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+}
+
+.sale-page__intro div h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
