@@ -17,14 +17,10 @@ class ClientApiLearning {
   private accessTokenExpiry: Date = new Date();
 
   private ensureAccessToken = async () => {
-    console.info("Ensuring access token is valid...");
-    console.info("Access token : ", this.accessToken);
-    console.info("Access token expiry : ", this.accessTokenExpiry);
     if (this.accessToken && new Date() < this.accessTokenExpiry) {
       return;
     }
 
-    console.info("Access token expired, fetching a new one...");
     await this.fetchAccessToken();
   };
 
@@ -116,13 +112,14 @@ class ClientApiLearning {
       headers: { authorization: `Bearer ${this.accessToken}` },
     });
 
-    const course = (await response.json()) as Course;
+    const courses = (await response.json()) as Course[];
+    const course = courses[0];
 
     try {
       CourseSchema.parse(course);
     } catch (error) {
       console.error(
-        "[fetchUserBySlug] Course received does not respect schema, error : ",
+        "[fetchCourseBySlug] Course received does not respect schema, error : ",
         error
       );
       return null;
