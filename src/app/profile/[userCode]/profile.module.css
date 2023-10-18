@@ -6,16 +6,17 @@
     row-gap: 2rem;
 }
 
-.profile__container {
-    width: 80%;
-}
-
 .profile__header {
     background-color: var(--bg-tertiary);
     color: var(--text-primary);
-    width: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.profile__header-container {
+    width: 80%;
+    margin: auto;
 }
 
 .profile__title {
@@ -24,6 +25,7 @@
     align-items: center;
     height: 40vh;
     font-size: 2.5rem;
+    border-top: 2px solid #fff;
 }
 
 .profile__dashboard {
