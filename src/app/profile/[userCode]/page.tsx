@@ -1,6 +1,5 @@
 import fetchUser from "@/actions/fetch-user-courses";
 import Header from "@/components/header/header";
-import ProductCards from "@/components/products/product-cards";
 import styles from "./profile.module.css";
 import { redirect } from "next/navigation";
 
@@ -29,9 +28,7 @@ const ProfilePage = async ({ params }: ProfilePageProps) => {
         </section>
 
         <section id="dashboard-products" className={styles.profile__dashboard}>
-          <div className={styles.profile__container}>
-            <ProductCards products={user.courses} />
-          </div>
+          <div className={styles.profile__container}></div>
         </section>
       </main>
     </>

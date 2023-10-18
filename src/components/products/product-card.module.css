@@ -1,0 +1,21 @@
+.product {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    row-gap: 1rem;
+    border: 3px var(--text-primary) solid;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.product__image img {
+    width: 100%;
+    border-radius: 5px 5px 0 0;
+}
+
+.product__content {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    padding: 1rem;
+}

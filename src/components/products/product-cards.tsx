@@ -1,39 +1,22 @@
-"use client";
+import { Course } from "@/lib/api/learning/schema/course.schema";
+import ProductCard from "@/components/products/product-card";
 
-import { Product } from "@/types/product.type";
-import Button from "@/components/ui/button";
-import ProfileCourseCard from "./product-card";
 import styles from "./product-cards.module.css";
-import { useRouter } from "next/navigation";
 
-type ProfileCourseCardsProps = {
-  products: Product[];
+type ProductCardsProps = {
+  courses: Course[];
 };
 
-const ProductCards = ({ products }: ProfileCourseCardsProps) => {
-  const router = useRouter();
-
-  const onDiscoverCatalogClick = () => {
-    router.push("/");
-  };
-
+const ProductCards = async ({ courses }: ProductCardsProps) => {
   return (
     <section id="products" className={styles.products}>
-      {products.length > 0 && (
-        <ul>
-          {products.map((product: any) => (
-            <li key={product.id}>
-              <ProfileCourseCard product={product} />
-            </li>
-          ))}
-        </ul>
-      )}
-      {products.length === 0 && (
-        <div className={styles.products__none}>
-          <p>Vous n&apos;avez pas encore de cours dans votre bibliothèque.</p>
-          <Button variant="primary" onClick={onDiscoverCatalogClick} style={{ color: '#fff' }}>Découvrir les cours</Button>
-        </div>
-      )}
+      <ul className={styles.products__list}>
+        {courses.map((course: any) => (
+          <li key={course.id}>
+            <ProductCard course={course} />
+          </li>
+        ))}
+      </ul>
     </section>
   );
 };

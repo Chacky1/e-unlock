@@ -2,7 +2,7 @@ import Header from "@/components/header/header";
 import Introduction from "@/components/introduction/introduction";
 import Categories from "@/components/categories/categories";
 import fetchCategories from "@/actions/fetch-categories";
-import CategoryCourses from "@/components/categories/category-courses";
+import CategoryProducts from "@/components/categories/category-products";
 import { Category } from "@/lib/api/learning/schema/category.schema";
 
 import styles from "./root.module.css";
@@ -23,7 +23,7 @@ const Home = async () => {
         <Introduction />
         {categories.length > 0 && <Categories categories={categories} />}
         {categories.length > 0 && categories.map((category: any) => (
-          <CategoryCourses key={category.id} category={category} />
+          <CategoryProducts key={category.id} category={category} />
         ))}
       </div>
     </main>

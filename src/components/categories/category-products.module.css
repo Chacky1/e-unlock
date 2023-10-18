@@ -1,22 +1,28 @@
-.categoryCourses {
+.categoryProducts {
     display: flex;
     flex-direction: column;
     row-gap: 1rem;
 }
 
-.categoryCourses__title {
+.categoryProducts__title {
     text-align: center;
 }
 
-.categoryCourses__title h2 {
+.categoryProducts__title h2 {
     font-size: 3rem;
     font-weight: 700;
     color: var(--text-primary);
     margin: 0 0 2rem 0;
 }
 
+.categoryProducts__no-course {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 @media screen and (max-width: 490px) {
-    .categoryCourses__title h2 {
+    .categoryProducts__title h2 {
         font-size: 2rem;
     }
 }

@@ -1,21 +1,33 @@
+"use client";
+
 import Image from "next/image";
-import style from "./product-card.module.css";
-import { Product } from "@/types/product.type";
+import { useRouter } from "next/navigation";
+
+import Button from "@/components/ui/button";
+import { Course } from "@/lib/api/learning/schema/course.schema";
+
+import styles from "./product-card.module.css";
 
 type ProductCardProps = {
-    product: Product;
-}
+  course: Course;
+};
 
-const ProductCard = ({ product }: ProductCardProps) => {
+const ProductCard = ({ course }: ProductCardProps) => {
+  const router = useRouter();
+
+  const onCourseClick = () => {
+    router.push(`/products/${course.slug}`);
+  };
+
   return (
-    <div className="card">
-      <div className="card-image">
-        <Image src={product.image} alt={product.name} width={200} height={200} />
+    <div className={styles.product}>
+      <div className={styles.product__image}>
+        <Image src={course.image} alt={course.name} width={300} height={200} />
       </div>
-      <div className="card-content">
-        <h3>{product.name}</h3>
-        <p>{product.description}</p>
-        <button>Accéder au cours</button>
+      <div className={styles.product__content}>
+        <h3>{course.issue}</h3>
+        <p>{course.description}</p>
+        <Button onClick={onCourseClick}>{course.name}</Button>
       </div>
     </div>
   );
