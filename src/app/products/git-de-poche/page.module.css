@@ -1,26 +1,216 @@
-.sale-page__intro {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem 0;
-    background-color: #1c72b813;
+.sale-page h2 {
+  text-align: center;
+  font-weight: 700;
+  font-size: 2rem;
+  width: 80%;
+  margin: auto;
+}
+
+.sale-page h3 {
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.sale-page section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem 0;
+  row-gap: 2rem;
+}
+
+.sale-page p {
+  line-height: 1.5rem;
+}
+
+.sale-page__intro,
+.sale-page__customer-situations,
+.sale-page__solutions,
+.sale-page__prerequisites,
+.sale-page__program,
+.sale-page__inaction {
+  background-color: #1c72b813;
+}
+
+.sale-page .section-container {
+  width: 80%;
+  margin: auto;
+}
+
+.sale-page .section-container > p {
+  width: 80%;
+  margin: auto;
+}
+
+.sale-page .sale-page__intro {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem 0;
+  background-color: #1c72b813;
 }
 
 .sale-page__intro video {
-    width: 40%;
-    padding: 2rem;
+  width: 45%;
+  padding: 2rem;
+  border-radius: 3rem;
 }
 
 .sale-page__intro div {
-    width: 40%;
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    row-gap: 1rem;
+  width: 40%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
 }
 
 .sale-page__intro div h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.sale-page__customer-situations .case-cards {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  row-gap: 2rem;
+  column-gap: 2rem;
+}
+
+.sale-page__customer-situations .case-card {
+  width: 350px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  row-gap: 1rem;
+  background-color: #fff;
+  border-radius: 1rem;
+  box-shadow: 1px 1px 10px 1px #0000001a;
+}
+
+.sale-page__storytelling .storytelling-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 1.2rem;
+  padding: 2rem 0;
+}
+
+.sale-page__storytelling .storytelling-section__image {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+}
+
+.sale-page__storytelling .storytelling-section__image img {
+  border-radius: 1rem;
+  box-shadow: 1px 1px 10px 1px #0000004d;
+}
+
+.sale-page__solutions ul {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 1rem;
+  padding: 2rem 1rem;
+}
+
+.sale-page__differentiation ul {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 1rem;
+  padding: 2rem 1rem;
+}
+
+.sale-page__differentiation .differenciation-image {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.program-sections {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.5rem;
+}
+
+.program-section {
+  display: flex;
+}
+
+.program-section_card-description {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+  background-color: #fff;
+  border-radius: 1rem;
+  width: 50%;
+  padding: 2rem;
+}
+
+.program-section_card-description ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 1rem;
+  padding-left: 1rem;
+}
+
+.program-section_image {
+  width: 50%;
+}
+
+.pricing-cards {
+  display: flex;
+  justify-content: space-around;
+}
+
+.pricing-card {
+  background-color: #1c72b813;
+  border-radius: 1rem;
+  width: fit-content;
+  padding: 3rem;
+  box-shadow: 1px 1px 10px 1px #0000001a;
+}
+
+.pricing-card_content {
+  display: flex;
+  flex-direction: column;
+  row-gap: 3rem;
+}
+
+.pricing-card_content p {
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+.pricing-card_content ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 1rem;
+  padding-left: 1rem;
+}
+
+.sale-page__inaction ul {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 1rem;
+  padding: 2rem 1rem;
 }
