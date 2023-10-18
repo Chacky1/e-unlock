@@ -9,8 +9,8 @@ import styles from "./header.module.css";
 import Link from "next/link";
 
 interface HeaderProps {
-  primaryTextColor: string;
-  secondaryTextColor: string;
+  primaryTextColor?: string;
+  secondaryTextColor?: string;
 }
 
 export default function Header({ primaryTextColor = 'inherit', secondaryTextColor = 'inherit' }: HeaderProps) {
