@@ -8,7 +8,12 @@ import Button from "@/components/ui/button";
 import styles from "./header.module.css";
 import Link from "next/link";
 
-export default function Header() {
+interface HeaderProps {
+  primaryTextColor: string;
+  secondaryTextColor: string;
+}
+
+export default function Header({ primaryTextColor = 'inherit', secondaryTextColor = 'inherit' }: HeaderProps) {
   const { userId } = useAuth();
   const router = useRouter();
 
@@ -30,7 +35,7 @@ export default function Header() {
             height={40}
             alt="UnlockTonComputer"
           />
-          <h1 className={styles.title}>e-unlock</h1>
+          <h1 className={styles.title} style={{color: primaryTextColor}}>e-unlock</h1>
         </Link>
       </section>
 
@@ -51,10 +56,10 @@ export default function Header() {
           </>
         ) : (
           <>
-            <Button variant="secondary" onClick={onSignUpClick}>
+            <Button variant="secondary" style={{color: secondaryTextColor}} onClick={onSignUpClick}>
               Inscription
             </Button>
-            <Button variant="primary" outlined onClick={onSignInClick}>
+            <Button variant="primary" style={{color: primaryTextColor}} outlined onClick={onSignInClick}>
               Connexion
             </Button>
           </>

@@ -6,7 +6,7 @@ const ProductLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <main className={styles.course}>
       <div className={styles.container}>
-        <Header />
+        <Header secondaryTextColor="#fff"/>
       </div>
       {children}
     </main>
