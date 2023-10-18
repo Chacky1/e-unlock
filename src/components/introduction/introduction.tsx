@@ -16,7 +16,7 @@ export default function Introduction() {
       </div>
       <div className={styles.introduction__image}>
         <Image
-          src="/video-camera-folder.webp"
+          src="/images/video-camera-folder.webp"
           width={400}
           height={400}
           alt="Video camera folder"

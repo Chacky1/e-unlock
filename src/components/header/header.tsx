@@ -30,7 +30,7 @@ export default function Header({ primaryTextColor = 'inherit', secondaryTextColo
       <section id="logo">
         <Link href="/" className={styles.logo}>
           <Image
-            src="/unlock-logo.webp"
+            src="/images/unlock-logo.webp"
             width={40}
             height={40}
             alt="UnlockTonComputer"
