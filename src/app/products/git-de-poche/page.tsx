@@ -1,12 +1,21 @@
 import { redirect } from "next/navigation";
+import Image from "next/image";
+import dynamic from "next/dynamic";
+import { ToastContainer } from "react-toastify";
 import parse from "html-react-parser";
 import Dinero from "dinero.js";
 
 import fetchCourseBySlug from "@/actions/fetch-course-by-slug";
 import Button from "@/components/ui/button";
 
+import 'react-toastify/dist/ReactToastify.css';
 import styles from "./page.module.css";
-import Image from "next/image";
+
+const DynamicBuy = dynamic(() => import("@/components/order/buy"), {
+  ssr: false,
+});
+
+const { NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY = '' } = process.env;
 
 const COURSE_NOT_FOUND_TIMEOUT = 1000 * 5; // 5 seconds
 const COURSE_SLUG = "git-de-poche";
@@ -37,9 +46,7 @@ const GitDePochePage = async () => {
             <h1>{course.name}</h1>
             <p>{courseSolutionHtml}</p>
             <p>{coursePrice.toUnit()}€</p>
-            <Button variant="secondary" style={{ color: "white" }}>
-              Acheter
-            </Button>
+            <DynamicBuy priceId="price_1O058fGtfE5rkMGLnjyDxKV8" nextStripePublicKey={NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY} courseId={course.id} />
           </div>
         </section>
 
@@ -478,9 +485,7 @@ const GitDePochePage = async () => {
                     </li>
                     <li>Accès à vie aux mises à jour sans surcoût</li>
                   </ul>
-                  <Button variant="secondary" style={{ color: "white" }}>
-                    Acheter
-                  </Button>
+                  <DynamicBuy priceId="price_1O058fGtfE5rkMGLnjyDxKV8" nextStripePublicKey={NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY} courseId={course.id} />
                 </div>
               </div>
             </div>
@@ -525,6 +530,7 @@ const GitDePochePage = async () => {
           </div>
         </section>
       </section>
+      <ToastContainer />
     </>
   );
 };

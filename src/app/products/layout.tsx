@@ -4,9 +4,9 @@ import styles from "./layout.module.css";
 
 const ProductLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <main className={styles.course}>
+    <main className={styles.product}>
       <div className={styles.container}>
-        <Header secondaryTextColor="#fff"/>
+        <Header secondaryTextColor="#fff" />
       </div>
       {children}
     </main>
