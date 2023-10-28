@@ -221,7 +221,6 @@ class ClientApiLearning {
     });
 
     const order = (await response.json()) as Order;
-    console.log("order", order);
 
     try {
       OrderSchema.parse(order);
