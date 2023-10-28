@@ -13,16 +13,20 @@ interface HeaderProps {
   secondaryTextColor?: string;
 }
 
-export default function Header({ primaryTextColor = 'inherit', secondaryTextColor = 'inherit' }: HeaderProps) {
+export default function Header({
+  primaryTextColor = "inherit",
+  secondaryTextColor = "inherit",
+}: HeaderProps) {
   const { userId } = useAuth();
   const router = useRouter();
+  const currentPath = window.location.pathname;
 
   const onSignUpClick = () => {
-    router.push("/sign-up");
+    router.push(`/sign-up?redirect=${currentPath}`);
   };
 
   const onSignInClick = () => {
-    router.push("/sign-in");
+    router.push(`/sign-in?redirect=${currentPath}`);
   };
 
   return (
@@ -35,7 +39,9 @@ export default function Header({ primaryTextColor = 'inherit', secondaryTextColo
             height={40}
             alt="UnlockTonComputer"
           />
-          <h1 className={styles.title} style={{color: primaryTextColor}}>e-unlock</h1>
+          <h1 className={styles.title} style={{ color: primaryTextColor }}>
+            e-unlock
+          </h1>
         </Link>
       </section>
 
@@ -56,10 +62,19 @@ export default function Header({ primaryTextColor = 'inherit', secondaryTextColo
           </>
         ) : (
           <>
-            <Button variant="secondary" style={{color: secondaryTextColor}} onClick={onSignUpClick}>
+            <Button
+              variant="secondary"
+              style={{ color: secondaryTextColor }}
+              onClick={onSignUpClick}
+            >
               Inscription
             </Button>
-            <Button variant="primary" style={{color: primaryTextColor}} outlined onClick={onSignInClick}>
+            <Button
+              variant="primary"
+              style={{ color: primaryTextColor }}
+              outlined
+              onClick={onSignInClick}
+            >
               Connexion
             </Button>
           </>

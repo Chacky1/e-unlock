@@ -1,10 +1,18 @@
 import { SignUp } from "@clerk/nextjs";
 import styles from "./sign-up.module.css";
 
-export default function Page() {
+type PageProps = {
+  searchParams: {
+    redirect: string;
+  };
+}
+
+export default function Page({ searchParams }: PageProps) {
+  const { redirect } = searchParams;
+
   return (
     <main className={styles["sign-up"]}>
-      <SignUp />
+      <SignUp afterSignUpUrl={redirect} />
     </main>
   );
 }
