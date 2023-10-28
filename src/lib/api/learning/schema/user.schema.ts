@@ -5,7 +5,7 @@ export const UserSchema = z.object({
     id: z.number(),
     code: z.string(),
     email: z.string().email(),
-    courses: z.array(CourseSchema)
+    courses: z.array(CourseSchema).optional(),
 });
 
 export type User = z.infer<typeof UserSchema>;

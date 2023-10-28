@@ -1,6 +1,8 @@
 import { UserSchema, User } from "./schema/user.schema";
 import { CourseSchema, Course } from "./schema/course.schema";
 import { CategorySchema, Category } from "./schema/category.schema";
+import { OrderSchema, Order } from "./schema/order.schema";
+import { LessonSchema, Lesson } from "./schema/lesson.schema";
 
 const {
   AUTH0_DOMAIN,
@@ -72,6 +74,31 @@ class ClientApiLearning {
     return categories;
   };
 
+  public fetchCourseById = async (
+    courseId: number
+  ): Promise<Course | null> => {
+    await this.ensureAccessToken();
+    const courseUrl = new URL(`/courses/${courseId}`, AUTH0_AUDIENCE);
+
+    const response = await fetch(courseUrl, {
+      headers: { authorization: `Bearer ${this.accessToken}` },
+    });
+
+    const course = (await response.json()) as Course;
+
+    try {
+      CourseSchema.parse(course);
+    } catch (error) {
+      console.error(
+        "[fetchCourseById] Course received does not respect schema, error : ",
+        error
+      );
+      return null;
+    }
+
+    return course;
+  };
+
   public fetchCoursesByCategory = async (
     categoryId: number
   ): Promise<Course[]> => {
@@ -128,6 +155,31 @@ class ClientApiLearning {
     return course;
   };
 
+  public fetchLessonById = async (
+    lessonId: number
+  ): Promise<Lesson | null> => {
+    await this.ensureAccessToken();
+    const lessonUrl = new URL(`/lessons/${lessonId}`, AUTH0_AUDIENCE);
+
+    const response = await fetch(lessonUrl, {
+      headers: { authorization: `Bearer ${this.accessToken}` },
+    });
+
+    const lesson = (await response.json()) as Lesson;
+
+    try {
+      LessonSchema.parse(lesson);
+    } catch (error) {
+      console.error(
+        "[fetchLessonById] Course received does not respect schema, error : ",
+        error
+      );
+      return null;
+    }
+
+    return lesson;
+  };
+
   public fetchUser = async (userCode: string): Promise<User | null> => {
     await this.ensureAccessToken();
     const userCoursesUrl = new URL(`/users/${userCode}`, AUTH0_AUDIENCE);
@@ -149,6 +201,39 @@ class ClientApiLearning {
     }
 
     return user;
+  };
+
+  public createOrder = async (
+    userCode: string,
+    courseId: number,
+    status: string
+  ): Promise<boolean> => {
+    await this.ensureAccessToken();
+    const ordersUrl = new URL("/orders", AUTH0_AUDIENCE);
+
+    const response = await fetch(ordersUrl, {
+      method: "POST",
+      headers: {
+        authorization: `Bearer ${this.accessToken}`,
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ userCode, courseId, status }),
+    });
+
+    const order = (await response.json()) as Order;
+    console.log("order", order);
+
+    try {
+      OrderSchema.parse(order);
+    } catch (error) {
+      console.error(
+        "[createOrder] Order received does not respect schema, error : ",
+        error
+      );
+      return false;
+    }
+
+    return true;
   };
 }
 
