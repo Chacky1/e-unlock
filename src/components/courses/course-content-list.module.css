@@ -1,0 +1,31 @@
+.course-content {
+    display: flex;
+    flex-direction: column;
+    row-gap: 3rem;
+}
+
+.course-content__section {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+}
+
+.course-content__lessons {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+}
+
+.course-content__lesson--active {
+    color: #000;
+}
+
+.course-content__lesson {
+    list-style-type: none;
+    cursor: pointer;
+}
+
+.course-content__lesson a {
+    text-decoration: none;
+    color: #666B70;
+}

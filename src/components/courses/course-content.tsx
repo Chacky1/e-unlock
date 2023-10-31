@@ -1,6 +1,8 @@
 import { toast } from "react-toastify";
 import fetchLessonById from "@/actions/fetch-lesson-by-id";
 
+import styles from "./course-content.module.css";
+
 type CourseContentProps = {
   lessonId: number;
 };
@@ -22,9 +24,8 @@ const CourseContent = async ({ lessonId }: CourseContentProps) => {
   }
 
   return (
-    <div>
-      <video src={lesson.videoUrl} controls />
-      <div>{lesson.textContent}</div>
+    <div className={styles.lesson}>
+      <video src={lesson.videoUrl} controls className={styles["lesson__video"]}/>
     </div>
   );
 };

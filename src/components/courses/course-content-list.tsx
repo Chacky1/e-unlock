@@ -4,22 +4,26 @@ import { Course } from "@/lib/api/learning/schema/course.schema";
 import { Lesson } from "@/lib/api/learning/schema/lesson.schema";
 import { Section } from "@/lib/api/learning/schema/section.schema";
 
+import styles from "./course-content-list.module.css";
+
 type CourseContentListProps = {
   course: Course;
   userCode: string;
+  activeLessonId?: number;
 };
 
-const CourseContentList = ({ course, userCode }: CourseContentListProps) => {
+const CourseContentList = ({ course, userCode, activeLessonId }: CourseContentListProps) => {
   return (
-    <>
+    <div className={styles["course-content"]}>
       {course.sections && course.sections.map((section: Section) => (
-        <div key={section.id}>
+        <div key={section.id} className={styles["course-content__section"]}>
           <h4>{section.name}</h4>
-          <ul>
+          <ul className={styles["course-content__lessons"]}>
             {section.lessons && section.lessons.map((lesson: Lesson) => (
-              <li key={lesson.id}>
+              <li key={lesson.id} className={styles["course-content__lesson"]}>
                 <Link
                   href={`/profile/${userCode}/courses/${course.slug}/${lesson.id}`}
+                  className={lesson.id === activeLessonId ? styles["course-content__lesson--active"] : ""}
                 >
                   {lesson.name}
                 </Link>
@@ -28,7 +32,7 @@ const CourseContentList = ({ course, userCode }: CourseContentListProps) => {
           </ul>
         </div>
       ))}
-    </>
+    </div>
   );
 };
 

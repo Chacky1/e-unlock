@@ -4,6 +4,8 @@ import CourseContent from "@/components/courses/course-content";
 import CourseNavigationMenu from "@/components/courses/course-navigation-menu";
 import { Course } from "@/lib/api/learning/schema/course.schema";
 
+import styles from "./page.module.css";
+
 type GitDePochePageProps = {
   params: {
     userCode: string;
@@ -35,8 +37,8 @@ const GitDePochePage = async ({ params }: GitDePochePageProps) => {
   }
 
   return (
-    <main>
-      <CourseNavigationMenu course={courseDetails} userCode={userCode} />
+    <main className={styles.course}>
+      <CourseNavigationMenu course={courseDetails} userCode={userCode} activeLessonId={+lessonId} />
       <CourseContent lessonId={+lessonId} />
     </main>
   );
