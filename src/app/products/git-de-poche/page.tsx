@@ -6,7 +6,6 @@ import parse from "html-react-parser";
 import Dinero from "dinero.js";
 
 import fetchCourseBySlug from "@/actions/fetch-course-by-slug";
-import Button from "@/components/ui/button";
 
 import 'react-toastify/dist/ReactToastify.css';
 import styles from "./page.module.css";
@@ -388,8 +387,8 @@ const GitDePochePage = async () => {
                 <div className={styles["program-section_image"]}>
                   <Image
                     src="/images/git-de-poche/module-1.png"
-                    width={100}
-                    height={100}
+                    width={400}
+                    height={250}
                     alt="GitHub Logo"
                   />
                 </div>
@@ -421,8 +420,8 @@ const GitDePochePage = async () => {
                 <div className={styles["program-section_image"]}>
                   <Image
                     src="/images/git-de-poche/module-2.png"
-                    width={100}
-                    height={100}
+                    width={400}
+                    height={250}
                     alt="GitHub Logo"
                   />
                 </div>
@@ -455,8 +454,8 @@ const GitDePochePage = async () => {
                 <div className={styles["program-section_image"]}>
                   <Image
                     src="/images/git-de-poche/module-3.png"
-                    width={100}
-                    height={100}
+                    width={400}
+                    height={250}
                     alt="GitHub Logo"
                   />
                 </div>
