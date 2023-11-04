@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { UserButton, useAuth } from "@clerk/nextjs";
 
 import Button from "@/components/ui/button";
@@ -19,7 +19,8 @@ export default function Header({
 }: HeaderProps) {
   const { userId } = useAuth();
   const router = useRouter();
-  const currentPath = window.location.pathname;
+  const currentPath = usePathname();
+
 
   const onSignUpClick = () => {
     router.push(`/sign-up?redirect=${currentPath}`);
