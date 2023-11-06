@@ -47,7 +47,6 @@ const ProfileCourse = ({ course }: ProfileCourseProps) => {
           alt={course.name}
           width={300}
           height={200}
-          layout="responsive"
         />
       </div>
       <div className={styles.course__description}>
