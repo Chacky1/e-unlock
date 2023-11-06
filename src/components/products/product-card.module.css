@@ -1,11 +1,11 @@
 .product {
     display: flex;
-    position: relative;
     flex-direction: column;
     row-gap: 1rem;
     border: 3px var(--text-primary) solid;
     border-radius: 10px;
-    overflow: hidden;
+    width: 300px;
+    margin: auto;
 }
 
 .product__image img {

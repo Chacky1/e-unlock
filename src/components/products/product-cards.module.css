@@ -12,10 +12,6 @@
     padding-top: 2rem;
 }
 
-.products__list li {
-    width: 30%;
-}
-
 .products__construction {
     text-align: center;
     padding: 2rem;
