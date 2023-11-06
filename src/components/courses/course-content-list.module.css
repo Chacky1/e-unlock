@@ -29,3 +29,9 @@
     text-decoration: none;
     color: #666B70;
 }
+
+@media screen and (max-width: 1024px) {
+    .course-content__lesson a {
+        color: #fff;
+    }
+}
