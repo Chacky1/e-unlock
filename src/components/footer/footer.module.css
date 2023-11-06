@@ -1,0 +1,35 @@
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3rem;
+    background-color: #1c72b8;
+    color: #fff;
+}
+
+.footer li {
+    list-style-type: "📖";
+    padding-left: 10px;
+}
+
+.footer a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer__utils, .footer__links {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+}
+
+@media screen and (max-width: 950px) {
+    .footer {
+        flex-direction: column;
+        row-gap: 3rem;
+    }
+
+    .footer__links h4 {
+        text-align: center;
+    }
+}
