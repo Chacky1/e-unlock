@@ -92,7 +92,7 @@
   box-shadow: 1px 1px 10px 1px #0000001a;
 }
 
-.sale-page__storytelling .storytelling-section {
+.storytelling-section {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -100,7 +100,7 @@
   padding: 2rem 0;
 }
 
-.sale-page__storytelling .storytelling-section__image {
+.storytelling-section__image {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -108,7 +108,7 @@
   margin: 2rem 0;
 }
 
-.sale-page__storytelling .storytelling-section__image img {
+.storytelling-section__image img {
   border-radius: 1rem;
   box-shadow: 1px 1px 10px 1px #0000004d;
 }
@@ -133,7 +133,7 @@
   padding: 2rem 1rem;
 }
 
-.sale-page__differentiation .differenciation-image {
+.differenciation-image {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -143,7 +143,7 @@
 .program-sections {
   display: flex;
   flex-direction: column;
-  row-gap: 1.5rem;
+  row-gap: 2rem;
 }
 
 .program-section {
@@ -221,4 +221,73 @@
   justify-content: center;
   row-gap: 1rem;
   padding: 2rem 1rem;
+}
+
+@media screen and (max-width: 1024px) {
+  .sale-page__intro video {
+    width: 50%;
+  }
+
+  .sale-page__intro div {
+    width: 50%;
+  }
+
+  .storytelling-section__image img {
+    width: 600px;
+    height: 450px;
+  }
+  
+  .program-section_image img {
+    width: 350px;
+    height: 200px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .sale-page .sale-page__intro {
+    flex-direction: column-reverse;
+    row-gap: 2rem;
+  }
+
+  .sale-page__intro video {
+    width: 100%;
+  }
+
+  .sale-page__intro div {
+    width: 100%;
+    text-align: center;
+  }
+
+  .storytelling-section__image img {
+    width: 500px;
+    height: 340px;
+  }
+
+  .differenciation-image img {
+    width: 300px;
+    height: 300px;
+  }
+
+  .differenciation-image__source {
+    font-size: 0.5rem;
+  }
+  
+  .program-section {
+    flex-direction: column;
+    row-gap: 1rem;
+  }
+
+  .program-section_card-description {
+    width: 100%;
+  }
+
+  .program-section_image {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .storytelling-section:last-child {
+    display: none;
+  }
 }

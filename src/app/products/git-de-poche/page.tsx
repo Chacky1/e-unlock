@@ -288,7 +288,7 @@ const GitDePochePage = async () => {
                 height={500}
                 alt="Git Flow"
               />
-              <p>
+              <p className={styles["differenciation-image__source"]}>
                 <i>
                   Source :
                   https://www.atlassian.com/fr/git/tutorials/comparing-workflows/gitflow-workflow
