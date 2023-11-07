@@ -1,0 +1,28 @@
+.text-center {
+    text-align: center;
+}
+
+.privacy-policy {
+    margin: 4rem 0;
+}
+
+.privacy-policy__container {
+    width: 80%;
+    margin: auto;
+    line-height: 1.5rem;
+}
+
+.privacy-policy__title {
+   margin: 3rem 0;
+}
+
+.privacy-policy__container div {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    margin: 3rem 0;
+}
+
+.privacy-policy__container li {
+    margin-left: 20px;
+}
