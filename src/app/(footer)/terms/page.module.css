@@ -1,0 +1,24 @@
+.terms {
+    margin: 4rem 0;
+}
+
+.terms__container {
+    width: 80%;
+    margin: auto;
+    line-height: 1.5rem;
+}
+
+.terms__title {
+   margin: 3rem 0;
+}
+
+.terms__container div {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    margin: 3rem 0;
+}
+
+.terms__container li {
+    margin-left: 20px;
+}
