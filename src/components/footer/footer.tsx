@@ -13,7 +13,7 @@ const Footer = () => {
         <h4>Quelques liens utiles...</h4>
         <ul className={styles["footer__utils-list"]}>
           <li>
-            <Link href="support">Contact</Link>
+            <Link href="/support">Contact</Link>
           </li>
         </ul>
       </div>
@@ -21,16 +21,16 @@ const Footer = () => {
         <h4>La lecture légale</h4>
         <ul className={styles["footer__links-list"]}>
           <li>
-            <Link href="legal">Mentions Légales</Link>
+            <Link href="/legal">Mentions Légales</Link>
           </li>
           <li>
-            <Link href="cookies">Politique de gestion des cookies</Link>
+            <Link href="/cookies">Politique de gestion des cookies</Link>
           </li>
           <li>
-            <Link href="privacy-policy">Politique de confidentialité</Link>
+            <Link href="/privacy-policy">Politique de confidentialité</Link>
           </li>
           <li>
-            <Link href="terms">Conditions Générales de vente</Link>
+            <Link href="/terms">Conditions Générales de vente</Link>
           </li>
         </ul>
       </div>
