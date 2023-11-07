@@ -19,8 +19,10 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="fr">
-        <body className={inter.className}>{children}</body>
-        <Footer />
+        <body className={inter.className}>
+          {children}
+          <Footer />
+        </body>
       </html>
     </ClerkProvider>
   );
