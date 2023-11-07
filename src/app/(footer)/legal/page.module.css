@@ -1,0 +1,17 @@
+.legal {
+    margin: 4rem 0;
+}
+
+.legal__container {
+    width: 60%;
+    margin: auto;
+    line-height: 1.5rem;
+}
+
+.legal__title {
+   margin: 3rem 0;
+}
+
+.legal__hosting-provider-address {
+    margin: 2rem 0;
+}
