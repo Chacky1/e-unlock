@@ -1,0 +1,25 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 2rem;
+    margin: 4rem;
+}
+
+.form__input-group {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    row-gap: 0.5rem;
+}
+
+.form__input-group input, .form__input-group textarea {
+    border-radius: 5px;
+    font-family: inherit;
+    font-size: 1rem;
+    padding: 0.5rem;
+}
+
+.form__input-group input {
+    border: 1px solid #ccc;
+}
