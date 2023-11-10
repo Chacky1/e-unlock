@@ -3,6 +3,7 @@ import { CourseSchema, Course } from "./schema/course.schema";
 import { CategorySchema, Category } from "./schema/category.schema";
 import { OrderSchema, Order } from "./schema/order.schema";
 import { LessonSchema, Lesson } from "./schema/lesson.schema";
+import { ResourceSchema, Resource } from "./schema/resource.schema";
 
 const {
   AUTH0_DOMAIN,
@@ -46,7 +47,9 @@ class ClientApiLearning {
     const { access_token } = await response.json();
 
     this.accessToken = access_token;
-    this.accessTokenExpiry = new Date(Date.now() + ACCESS_TOKEN_TIME_TO_LIVE * 1000);
+    this.accessTokenExpiry = new Date(
+      Date.now() + ACCESS_TOKEN_TIME_TO_LIVE * 1000
+    );
   };
 
   public fetchCategories = async (): Promise<Category[]> => {
@@ -74,9 +77,7 @@ class ClientApiLearning {
     return categories;
   };
 
-  public fetchCourseById = async (
-    courseId: number
-  ): Promise<Course | null> => {
+  public fetchCourseById = async (courseId: number): Promise<Course | null> => {
     await this.ensureAccessToken();
     const courseUrl = new URL(`/courses/${courseId}`, AUTH0_AUDIENCE);
 
@@ -155,9 +156,7 @@ class ClientApiLearning {
     return course;
   };
 
-  public fetchLessonById = async (
-    lessonId: number
-  ): Promise<Lesson | null> => {
+  public fetchLessonById = async (lessonId: number): Promise<Lesson | null> => {
     await this.ensureAccessToken();
     const lessonUrl = new URL(`/lessons/${lessonId}`, AUTH0_AUDIENCE);
 
@@ -189,6 +188,8 @@ class ClientApiLearning {
     });
 
     const user = (await response.json()) as User;
+
+    console.log("user", user);
 
     try {
       UserSchema.parse(user);
@@ -233,6 +234,36 @@ class ClientApiLearning {
     }
 
     return true;
+  };
+
+  public fetchResourcesByLessonId = async (
+    lessonId: number
+  ): Promise<Resource[]> => {
+    await this.ensureAccessToken();
+    const resourcesUrl = new URL(
+      `resources?lessonId=${lessonId}`,
+      AUTH0_AUDIENCE
+    );
+
+    const response = await fetch(resourcesUrl, {
+      headers: { authorization: `Bearer ${this.accessToken}` },
+    });
+
+    const resources = (await response.json()) as Resource[];
+
+    try {
+      for (const resource of resources) {
+        ResourceSchema.parse(resource);
+      }
+    } catch (error) {
+      console.error(
+        "[fetchResourcesByLessonId] Resource received does not respect schema, error : ",
+        error
+      );
+      return [];
+    }
+
+    return resources;
   };
 }
 

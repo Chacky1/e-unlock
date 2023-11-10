@@ -3,7 +3,7 @@ import { z } from "zod";
 export const LessonSchema = z.object({
     id: z.number(),
     name: z.string().min(1).max(255),
-    textContent: z.string(),
+    textContent: z.string().nullable().optional(),
     sectionId: z.number(),
     sectionOrder: z.number(),
     videoUrl: z.string().url(),

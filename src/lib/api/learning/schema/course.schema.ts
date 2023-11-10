@@ -10,6 +10,7 @@ export const CourseSchema = z.object({
     issue: z.string(),
     solution: z.string(),
     price: z.number(),
+    priceCode: z.string().nullable().optional(),
     categoryId: z.number(),
     image: z.string().url(),
     video: z.string().url(),
