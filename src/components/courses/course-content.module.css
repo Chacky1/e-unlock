@@ -1,12 +1,29 @@
 .lesson {
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
     align-items: center;
-    width: 80%;
-    height: 100vh;
 }
 
 .lesson__video {
     width: 80%;
-    margin: auto;
+    margin: 0 auto;
+}
+
+.lesson__resources {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    row-gap: 1rem;
+    column-gap: 1rem;
+}
+
+.lesson__resource {
+    list-style-type: "📁";
+    padding-left: 10px;
+}
+
+.lesson__resource a {
+    color: #1c72b8;
+    text-decoration: none;
 }
