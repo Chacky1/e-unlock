@@ -1,13 +1,11 @@
 import { redirect } from "next/navigation";
 import Image from "next/image";
 import dynamic from "next/dynamic";
-import { ToastContainer } from "react-toastify";
 import parse from "html-react-parser";
 import Dinero from "dinero.js";
 
 import fetchCourseBySlug from "@/actions/fetch-course-by-slug";
 
-import 'react-toastify/dist/ReactToastify.css';
 import styles from "./page.module.css";
 
 const DynamicBuy = dynamic(() => import("@/components/order/buy"), {
@@ -529,7 +527,6 @@ const GitDePochePage = async () => {
           </div>
         </section>
       </section>
-      <ToastContainer />
     </>
   );
 };
