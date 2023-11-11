@@ -23,3 +23,13 @@
 .form__input-group input {
     border: 1px solid #ccc;
 }
+
+@media screen and (max-width: 1024px) {
+    .form {
+        margin: 2rem;
+    }
+
+    .form__input-group {
+        width: 100%;
+    }
+}
