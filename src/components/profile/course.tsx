@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
 import { Course } from "@/lib/api/learning/schema/course.schema";
@@ -15,7 +15,6 @@ interface ProfileCourseProps {
 
 const ProfileCourse = ({ course }: ProfileCourseProps) => {
   const router = useRouter();
-  const urlCurrentPath = usePathname();
 
   let firstLessonId: number = 0;
   if (course.sections && course.sections.length > 0) {
@@ -36,7 +35,7 @@ const ProfileCourse = ({ course }: ProfileCourseProps) => {
   }
 
   const onClickCourse = () => {
-    router.push(`${urlCurrentPath}/courses/${course.slug}/${firstLessonId}`);
+    router.push(`/courses/${course.slug}/${firstLessonId}`);
   };
 
   return (

@@ -5,17 +5,24 @@ import CourseNavigationMenu from "@/components/courses/course-navigation-menu";
 import { Course } from "@/lib/api/learning/schema/course.schema";
 
 import styles from "./page.module.css";
+import { auth } from "@clerk/nextjs";
+import { redirect } from "next/navigation";
 
 type GitDePochePageProps = {
   params: {
-    userCode: string;
     lessonId: string;
   };
 };
 
 const GitDePochePage = async ({ params }: GitDePochePageProps) => {
-  const { userCode, lessonId } = params;
-  const user = await fetchUser(userCode);
+  const { lessonId } = params;
+  const { userId } = auth();
+
+  if (!userId) {
+    redirect("/");
+  }
+
+  const user = await fetchUser(userId);
   const userCourses = user?.courses;
 
   if (!userCourses) {
@@ -38,7 +45,7 @@ const GitDePochePage = async ({ params }: GitDePochePageProps) => {
 
   return (
     <main className={styles.course}>
-      <CourseNavigationMenu course={courseDetails} userCode={userCode} activeLessonId={+lessonId} />
+      <CourseNavigationMenu course={courseDetails} userCode={userId} activeLessonId={+lessonId} />
       <CourseContent lessonId={+lessonId} />
     </main>
   );

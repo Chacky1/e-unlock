@@ -22,7 +22,7 @@ const CourseContentList = ({ course, userCode, activeLessonId }: CourseContentLi
             {section.lessons && section.lessons.map((lesson: Lesson) => (
               <li key={lesson.id} className={styles["course-content__lesson"]}>
                 <Link
-                  href={`/profile/${userCode}/courses/${course.slug}/${lesson.id}`}
+                  href={`/courses/${course.slug}/${lesson.id}`}
                   className={lesson.id === activeLessonId ? styles["course-content__lesson--active"] : ""}
                 >
                   {lesson.name}
