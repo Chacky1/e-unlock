@@ -1,7 +1,9 @@
+import { NextResponse } from "next/server";
+
 import clientApiLearning from "@/lib/api/learning/client";
 
 export const POST = async (
-  req: Request
+  req: Request,
 ) => {
   const { userCode, courseId, status } = await req.json();
 
@@ -11,9 +13,9 @@ export const POST = async (
       courseId,
       status
     );
-    return Response.json(order);
+    return NextResponse.json(order);
   } catch (error) {
     console.error("[createOrderOrFail] error : ", error);
-    return Response.error();
+    return NextResponse.json(error, { status: 500 });
   }
 };
