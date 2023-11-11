@@ -1,6 +1,7 @@
 import { ClerkProvider } from "@clerk/nextjs";
 import { Inter } from "next/font/google";
 import { ToastContainer } from "react-toastify";
+import { Analytics } from '@vercel/analytics/react';
 
 import Footer from "@/components/footer/footer";
 
@@ -26,6 +27,7 @@ export default function RootLayout({
           {children}
           <ToastContainer />
           <Footer />
+          <Analytics />
         </body>
       </html>
     </ClerkProvider>
