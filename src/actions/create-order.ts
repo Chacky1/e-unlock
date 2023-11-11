@@ -1,12 +1,12 @@
 import clientApiLearning from "@/lib/api/learning/client";
+import { Order } from "@/lib/api/learning/schema/order.schema";
 
-const createOrder = async (
+const createOrderOrFail = async (
   userCode: string,
   courseId: number,
   status: string
-): Promise<Boolean> => {
-  console.log("createOrder", userCode, courseId, status);
-  return await clientApiLearning.createOrder(userCode, courseId, status);
+): Promise<Order> => {
+  return await clientApiLearning.createOrderOrFail(userCode, courseId, status);
 };
 
-export default createOrder;
+export default createOrderOrFail;

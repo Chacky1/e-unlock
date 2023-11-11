@@ -189,8 +189,6 @@ class ClientApiLearning {
 
     const user = (await response.json()) as User;
 
-    console.log("user", user);
-
     try {
       UserSchema.parse(user);
     } catch (error) {
@@ -204,13 +202,13 @@ class ClientApiLearning {
     return user;
   };
 
-  public createOrder = async (
+  public createOrderOrFail = async (
     userCode: string,
     courseId: number,
     status: string
-  ): Promise<boolean> => {
+  ): Promise<Order> => {
     await this.ensureAccessToken();
-    const ordersUrl = new URL("/orders", AUTH0_AUDIENCE);
+    const ordersUrl = new URL("orders", AUTH0_AUDIENCE);
 
     const response = await fetch(ordersUrl, {
       method: "POST",
@@ -230,10 +228,41 @@ class ClientApiLearning {
         "[createOrder] Order received does not respect schema, error : ",
         error
       );
-      return false;
+      throw error;
     }
 
-    return true;
+    return order;
+  };
+
+  public updateOrderOrFail = async (
+    orderId: number,
+    status: string
+  ): Promise<Order> => {
+    await this.ensureAccessToken();
+    const ordersUrl = new URL(`/orders/${orderId}`, AUTH0_AUDIENCE);
+
+    const response = await fetch(ordersUrl, {
+      method: "PATCH",
+      headers: {
+        authorization: `Bearer ${this.accessToken}`,
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ status }),
+    });
+
+    const order = (await response.json()) as Order;
+
+    try {
+      OrderSchema.parse(order);
+    } catch (error) {
+      console.error(
+        "[updateOrder] Order received does not respect schema, error : ",
+        error
+      );
+      throw error;
+    }
+
+    return order;
   };
 
   public fetchResourcesByLessonId = async (
