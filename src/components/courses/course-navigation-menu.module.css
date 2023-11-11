@@ -40,6 +40,7 @@
         overflow-y: hidden;
         z-index: 2;
         background: #1c72b8f5;
+        overflow-y: scroll;
     }
 
     .course-navigation__toggle {

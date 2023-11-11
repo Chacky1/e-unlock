@@ -1,29 +1,40 @@
 .lesson {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .lesson__video {
-    width: 80%;
-    margin: 0 auto;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.lesson__title {
+  text-align: center;
 }
 
 .lesson__resources {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    row-gap: 1rem;
-    column-gap: 1rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  row-gap: 1rem;
+  column-gap: 1rem;
 }
 
 .lesson__resource {
-    list-style-type: "📁";
-    padding-left: 10px;
+  list-style-type: "📁";
+  padding-left: 10px;
 }
 
 .lesson__resource a {
-    color: #1c72b8;
-    text-decoration: none;
+  color: #1c72b8;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 1024px) {
+  .lesson {
+    padding: 5rem 0;
+    row-gap: 2rem;
+  }
 }
