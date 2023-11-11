@@ -3,16 +3,18 @@ import Image from "next/image";
 import dynamic from "next/dynamic";
 import parse from "html-react-parser";
 import Dinero from "dinero.js";
+import { auth } from "@clerk/nextjs";
 
 import fetchCourseBySlug from "@/actions/fetch-course-by-slug";
 
 import styles from "./page.module.css";
+import fetchUser from "@/actions/fetch-user-courses";
 
 const DynamicBuy = dynamic(() => import("@/components/order/buy"), {
   ssr: false,
 });
 
-const { NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY = '' } = process.env;
+const { NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY = "" } = process.env;
 
 const COURSE_NOT_FOUND_TIMEOUT = 1000 * 5; // 5 seconds
 const COURSE_SLUG = "git-de-poche";
@@ -28,8 +30,22 @@ const GitDePochePage = async () => {
     return <p>Une erreur s&apos;est produite, vous allez être redirigé...</p>;
   }
 
+  let hasUserBoughtCourse = false;
+
+  const { userId } = auth();
+
+  if (userId) {
+    const user = await fetchUser(userId);
+    const userCourses = user?.courses || [];
+
+    if (userCourses.find((userCourse) => userCourse.id === course.id)) {
+      hasUserBoughtCourse = true;
+    }
+  }
+
   const courseSolutionHtml = parse(course.solution);
   const coursePrice = Dinero({ amount: course.price, currency: "EUR" });
+  const coursePriceCode = course.priceCode || "";
 
   return (
     <>
@@ -43,7 +59,12 @@ const GitDePochePage = async () => {
             <h1>{course.name}</h1>
             <p>{courseSolutionHtml}</p>
             <p>{coursePrice.toUnit()}€</p>
-            <DynamicBuy priceId="price_1O058fGtfE5rkMGLnjyDxKV8" nextStripePublicKey={NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY} courseId={course.id} />
+            <DynamicBuy
+              priceId={coursePriceCode}
+              nextStripePublicKey={NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY}
+              courseId={course.id}
+              hasUserBoughtCourse={hasUserBoughtCourse}
+            />
           </div>
         </section>
 
@@ -482,7 +503,12 @@ const GitDePochePage = async () => {
                     </li>
                     <li>Accès à vie aux mises à jour sans surcoût</li>
                   </ul>
-                  <DynamicBuy priceId="price_1O058fGtfE5rkMGLnjyDxKV8" nextStripePublicKey={NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY} courseId={course.id} />
+                  <DynamicBuy
+                    priceId={coursePriceCode}
+                    nextStripePublicKey={NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY}
+                    courseId={course.id}
+                    hasUserBoughtCourse={hasUserBoughtCourse}
+                  />
                 </div>
               </div>
             </div>
