@@ -1,5 +1,3 @@
-import { auth } from "@clerk/nextjs";
-
 import Header from "@/components/header/header";
 import Introduction from "@/components/introduction/introduction";
 import Categories from "@/components/categories/categories";
@@ -10,12 +8,6 @@ import { Category } from "@/lib/api/learning/schema/category.schema";
 import styles from "./root.module.css";
 
 const Home = async () => {
-  const { userId } = auth();
-
-  if (userId) {
-    console.log("userId", userId);
-  }
-
   let categories: Category[] = [];
 
   try {
