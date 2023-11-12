@@ -18,6 +18,9 @@ const ProfilePage = async ({ params }: ProfilePageProps) => {
   const user = await fetchUser(userCode);
   const userCourses = user?.courses;
 
+  console.log(`user : ${user}`);
+  console.log(`userCourses : ${userCourses}`);
+
   if (!user) {
     redirect("/");
   }
