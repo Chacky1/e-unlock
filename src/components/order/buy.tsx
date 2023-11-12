@@ -41,7 +41,7 @@ const Buy = ({
     );
 
   const redirectToDashboard = () => {
-    router.push(`/profile/${userId}`);
+    router.push(`/dashboard`);
   };
 
   const createOrderOrFail = async (

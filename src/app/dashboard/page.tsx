@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import { auth } from "@clerk/nextjs";
 
 import fetchUser from "@/actions/fetch-user-courses";
 import Header from "@/components/header/header";
@@ -7,23 +8,15 @@ import NoCourse from "@/components/profile/no-course";
 
 import styles from "./profile.module.css";
 
-type ProfilePageProps = {
-  params: {
-    userCode: string;
-  };
-};
+const ProfilePage = async () => {
+  const { userId } = auth();
 
-const ProfilePage = async ({ params }: ProfilePageProps) => {
-  const { userCode } = params;
-  const user = await fetchUser(userCode);
-  const userCourses = user?.courses;
-
-  console.log(`user : ${user}`);
-  console.log(`userCourses : ${userCourses}`);
-
-  if (!user) {
+  if (!userId) {
     redirect("/");
   }
+
+  const user = await fetchUser(userId);
+  const userCourses = user?.courses;
 
   return (
     <>

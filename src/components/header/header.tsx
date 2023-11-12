@@ -55,7 +55,7 @@ export default function Header({
                   <Link href="/">Accueil</Link>
                 </li>
                 <li className={styles.navigation__link}>
-                  <Link href={`/profile/${userId}`}>Mes cours</Link>
+                  <Link href={`/dashboard`}>Mes cours</Link>
                 </li>
               </ul>
             </nav>
