@@ -207,7 +207,9 @@ class ClientApiLearning {
     courseId: number,
     status: string
   ): Promise<Order> => {
+    console.log("[createOrderOrFail] parameters", userCode, courseId, status);
     await this.ensureAccessToken();
+    console.log("[createOrderOrFail] accessToken : ", this.accessToken);
     const ordersUrl = new URL("orders", AUTH0_AUDIENCE);
 
     const response = await fetch(ordersUrl, {
