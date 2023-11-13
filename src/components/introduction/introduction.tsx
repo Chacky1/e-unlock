@@ -12,7 +12,11 @@ export default function Introduction() {
           <strong>maîtriser vos outils</strong> et aller plus loin avec{" "}
           <strong>la cybersécurité</strong> et <strong>le cloud</strong>.
         </p>
-        <Button variant="tertiary">Commencer</Button>
+        <Button
+          variant="tertiary"
+        >
+          <a href="#categories">Commencer</a>
+        </Button>
       </div>
       <div className={styles.introduction__image}>
         <Image
