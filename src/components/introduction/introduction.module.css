@@ -24,6 +24,11 @@
     font-weight: 400;
 }
 
+.introduction__content a {
+    text-decoration: none;
+    color: #000;
+}
+
 .introduction__image {
     width: 50%;
     display: flex;
